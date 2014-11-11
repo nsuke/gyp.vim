@@ -17,7 +17,9 @@ syn region  gypStringS          start=+'+  end=+'\|$+  contains=gypSection,gypTa
 syn match   gypNumber           "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
 
 syn keyword gypSection          variables includes targets conditions target_defaults
-syn keyword gypTargetSection    actions all_dependent_settings configurations defines dependencies direct_dependent_settings include_dirs libraries link_settings sources target_conditions target_name type msvs_props xcode_config_file xcode_framework_dirs mac_bundle_resources xcode_settings
+syn keyword gypTargetSection    actions all_dependent_settings configurations defines dependencies direct_dependent_settings include_dirs libraries link_settings sources target_conditions target_name type msvs_props xcode_config_file xcode_framework_dirs mac_bundle_resources xcode_settings destination files inputs outputs copies default_configuration dependencies_original postbuilds product_dir product_extension product_name product_prefix rules run_as standalone_static_library suppress_wildcard toolset toolsets process_outputs_as_sources action rule action_name rule_name cflags cflags_c cflags_cc ldflags
+
+syn keyword gypPredefined       PRODUCT_DIR INTERMEDIATE_DIR SHARED_INTERMEDIATE_DIR EXECUTABLE_PREFIX EXECUTABLE_SUFFIX SHARED_LIB_PREFIX SHARED_LIB_SUFFIX STATIC_LIB_PREFIX STATIC_LIB_SUFFIX RULE_INPUT_ROOT RULE_INPUT_EXT RULE_INPUT_NAME RULE_INPUT_PATH DEPTH
 
 if exists("gyp_fold")
     syn match gypFunction "\<function\>"
@@ -55,10 +57,9 @@ if version >= 508 || !exists("did_gyp_syn_inits")
 
   HiLink gypSection          Special
   HiLink gypTargetSection    Conditional
+  HiLink gypPredefined       Special
 
   delcommand HiLink
 endif
 
 let b:current_syntax = "gyp"
-
-
